@@ -1,0 +1,17 @@
+.parallax {
+  margin-top: 19px;
+  background-image: url("https://cdn.discordapp.com/attachments/692547429492326572/695074651805712394/Logo33.jpg");
+  min-height: 500px; 
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  z-index: -1;
+}
+.community-title{
+  position: absolute;
+  left: 41.5%;
+  font-family:  'Oswald';
+  color: #fff;
+  font-size: 50px;
+}

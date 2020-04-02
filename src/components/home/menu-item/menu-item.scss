@@ -1,0 +1,46 @@
+.menu-container{
+    margin-top: 19px;
+    text-align: center;
+    display: flex;
+    justify-content: space-around;
+
+    .inner-content{
+        position: absolute;
+        z-index: 1;
+    }
+    
+    
+    .inner-menu{
+        display:flex;
+        width: 32.3%;
+        align-items: center;
+        justify-content: center;
+        font-family:  'Oswald';
+        color: #fff;
+        cursor: pointer;
+        
+        .menu-img {
+            transition: .5s ease;
+          filter: grayscale(100%);
+          z-index: -1;
+
+        }
+        
+        &:hover .menu-img{
+            filter: grayscale(0%);
+        }
+
+
+        .title{
+            font-size: 30px;
+            letter-spacing: 2px;
+        }
+
+        .inner-menu-link{
+            display: flex;
+            color: white;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+}

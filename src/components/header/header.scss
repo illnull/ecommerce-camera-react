@@ -1,0 +1,18 @@
+.header {
+    display: flex;
+    flex-direction: column;
+    font-family:  'Oswald';
+    .upper-header {
+        color: white ;
+        display: flex;
+        justify-content: space-around;
+        //justify-content: flex-end;
+        background-color: black;
+    }
+
+    .lower-options{
+        display:flex;
+        justify-content: space-around;
+        //justify-content: center;
+    }
+}
