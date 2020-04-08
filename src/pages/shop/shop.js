@@ -1,5 +1,7 @@
 import React from 'react'
 import axios from 'axios'
+
+
 import Collection from '../../components/collection/collection'
 import Category from '../../components/category/category'
 import './shop.scss'

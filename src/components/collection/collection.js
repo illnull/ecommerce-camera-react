@@ -1,6 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import Image from 'react-image-resizer'
+import ReactPaginate from 'react-paginate'
+
 import './collection.scss'
 
 const Collection = ({ products }) => {
@@ -9,19 +11,19 @@ const Collection = ({ products }) => {
             {
                 products.map(product =>
                     <div className="col" key={product.id}>
-                        <Link to={{ pathname: `/shop/products/${product.id}`, product: product }} >
+                        <Link to={{ pathname: `/shop/products/${product.id}` }} >
                             <div>
                                 <Image src={product.image} height={240} width={240} />
                             </div>
                             <div>
-                                {product.price}
+                                ${product.price / 100}<br />
                                 {product.name}
                             </div>
                         </Link>
                     </div>
                 )
             }
-        </div >
+        </div>
     )
 }
 
