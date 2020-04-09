@@ -24,7 +24,7 @@ class Signup extends Component {
     handleSubmit = (event) => {
         event.preventDefault()
         const { email, password, password_confirmation, fName, lName, phNum, city, country } = this.state
-        axios.post('http://localhost:3000/customers/new.json', { email: email, password: password, password_confirmation: password_confirmation, firstName: fName, lastName: lName, phoneNumber: phNum, city: city, country: country }, { withCredentials: true })
+        axios.post('http://localhost:3000/customers/new.json', { email: email, password: password, password_confirmation: password_confirmation, firstName: fName, lastName: lName, phoneNumber: phNum, city: city, country: country }, { withCredentials: false })
             .then(response => {
                 if (response.data.status === 'created') {
                     console.log(response)

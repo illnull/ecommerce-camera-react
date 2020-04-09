@@ -29,9 +29,20 @@ class ProductList extends React.Component {
 
     componentDidUpdate(prevProps, prevState) {
         if (this.state.category_id !== prevState.category_id) {
-            axios.get(`http://localhost:3000/categories/${this.state.category_id}.json`).then(res => {
-                this.setState({ products: res.data })
-            })
+            if (this.state.category_id === 'newarrivals') {
+                axios.get('http://localhost:3000/products/new.json').then(res => {
+                    this.setState({ products: res.data })
+                })
+            }
+            else if (this.state.category_id === 'all') {
+                axios.get('http://localhost:3000/products/all.json').then(res => {
+                    this.setState({ products: res.data })
+                })
+            } else {
+                axios.get(`http://localhost:3000/categories/${this.state.category_id}.json`).then(res => {
+                    this.setState({ products: res.data })
+                })
+            }
         }
     }
 

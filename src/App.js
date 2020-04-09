@@ -43,7 +43,7 @@ class App extends React.Component {
 
   loginStatus = () => {
     axios.get('http://localhost:3000/logged_in',
-      { withCredentials: true })
+      { withCredentials: false })
       .then(response => {
         if (response.data.logged_in) {
           this.handleLogin(response)
@@ -56,9 +56,12 @@ class App extends React.Component {
 
 
   render() {
+    console.log(this.state)
     return (
       <div>
-        <Header />
+        <Header
+          {...this.state}
+          handleLogout={this.handleLogout} />
         <Switch>
           <Route exact path='/' render={props => (<HomePage {...props} handleLogout={this.handleLogout} loggedInStatus={this.state.isLoggedIn} />)} />
           <Route exact path='/shop' component={Shop} />

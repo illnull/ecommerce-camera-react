@@ -1,7 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import Image from 'react-image-resizer'
-import ReactPaginate from 'react-paginate'
 
 import './collection.scss'
 

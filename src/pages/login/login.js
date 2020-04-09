@@ -20,14 +20,8 @@ class Login extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault()
-        const { email, password } = this.state
 
-        let user = {
-            email: email,
-            password: password
-        }
-
-        axios.post('http://localhost:3000/login', { user }, { withCredentials: true })
+        axios.post('http://localhost:3000/login.json', { email: this.state.email, password: this.state.password }, { withCredentials: false })
             .then(response => {
                 if (response.data.logged_in) {
                     this.props.handleLogin(response.data)
@@ -36,6 +30,7 @@ class Login extends Component {
                     this.setState({
                         errors: response.data.errors
                     })
+                    console.log(response)
                 }
             })
             .catch(error => console.log('api errors:', error))

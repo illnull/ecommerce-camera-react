@@ -7,6 +7,8 @@ const Category = ({ categories, onSelectCategory }) => {
         <div className="card" style={{ height: 'fit-content' }}>
             <h1>Categories</h1>
             <div className="list-group list-group-flush">
+                <div className="list-group-item" onClick={() => onSelectCategory('newarrivals')}>New Arrivals</div>
+                <div className="list-group-item" onClick={() => onSelectCategory('all')}>All Products</div>
                 {
                     categories.map(category =>
                         <div className="list-group-item" key={category.id} onClick={() => onSelectCategory(category.id)}>
