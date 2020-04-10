@@ -18,8 +18,8 @@ class App extends React.Component {
     super()
 
     this.state = {
-      isLoggedIn: false,
-      customer: {}
+      isLoggedIn: JSON.parse(localStorage.getItem('isLoggedIn')) || false,
+      customer: JSON.parse(localStorage.getItem('customer')) || []
     }
   }
 
@@ -28,6 +28,9 @@ class App extends React.Component {
   }
 
   handleLogin = (data) => {
+    localStorage.setItem('isLoggedIn', true)
+    localStorage.setItem('customer', JSON.stringify(data.customer))
+    console.log(data.customer)
     this.setState({
       isLoggedIn: true,
       customer: data.customer
@@ -35,9 +38,11 @@ class App extends React.Component {
   }
 
   handleLogout = () => {
+    localStorage.setItem('isLoggedIn', false)
+    localStorage.setItem('customer', null)
     this.setState({
       isLoggedIn: false,
-      customer: {}
+      customer: []
     })
   }
 

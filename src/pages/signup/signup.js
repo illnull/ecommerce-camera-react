@@ -12,19 +12,38 @@ class Signup extends Component {
             email: '',
             password: '',
             password_confirmation: '',
+            provinces: [],
+            selectedProvince: '',
             errors: ''
-        };
+        }
     }
+
+    componentDidMount() {
+        axios.get('http://localhost:3000/provinces/view.json')
+            .then(res => {
+                this.setState({
+                    provinces: res.data
+                })
+            })
+    }
+
     handleChange = (event) => {
         const { name, value } = event.target
         this.setState({
             [name]: value
         })
-    };
+    }
+
+    handleDropList = (e) => {
+        this.setState({
+            selectedProvince: e.target.value
+        })
+    }
+
     handleSubmit = (event) => {
         event.preventDefault()
-        const { email, password, password_confirmation, fName, lName, phNum, city, country } = this.state
-        axios.post('http://localhost:3000/customers/new.json', { email: email, password: password, password_confirmation: password_confirmation, firstName: fName, lastName: lName, phoneNumber: phNum, city: city, country: country }, { withCredentials: false })
+        const { email, password, password_confirmation, fName, lName, phNum, city, country, selectedProvince } = this.state
+        axios.post('http://localhost:3000/customers/new.json', { email: email, password: password, password_confirmation: password_confirmation, firstName: fName, lastName: lName, phoneNumber: phNum, city: city, country: country, province_id: selectedProvince }, { withCredentials: false })
             .then(response => {
                 if (response.data.status === 'created') {
                     console.log(response)
@@ -37,7 +56,7 @@ class Signup extends Component {
                 }
             })
             .catch(error => console.log('api errors:', error))
-    };
+    }
 
     redirect = () => {
         this.props.history.push('/')
@@ -57,7 +76,7 @@ class Signup extends Component {
     }
 
     render() {
-        const { email, password, password_confirmation, fName, lName, phNum, city, country } = this.state
+        const { email, password, password_confirmation, fName, lName, phNum, city, country, provinces } = this.state
         return (
             <div>
                 <h1>Sign Up</h1>
@@ -84,17 +103,24 @@ class Signup extends Component {
                         onChange={this.handleChange}
                     />
                     <input
-                        placeholder="City"
-                        type="text"
-                        name="city"
-                        value={city}
-                        onChange={this.handleChange}
-                    />
-                    <input
                         placeholder="Country"
                         type="text"
                         name="country"
                         value={country}
+                        onChange={this.handleChange}
+                    />
+                    <select onChange={this.handleDropList}>
+                        {
+                            provinces.map(province =>
+                                <option value={province.id}>{province.name}</option>
+                            )
+                        }
+                    </select>
+                    <input
+                        placeholder="City"
+                        type="text"
+                        name="city"
+                        value={city}
                         onChange={this.handleChange}
                     />
                     <input

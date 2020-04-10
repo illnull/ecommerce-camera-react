@@ -26,14 +26,14 @@ class Product extends React.Component {
                     this.state.product.map(item =>
                         <div id={item.id}>
                             <Image
-                                src={item.image}
+                                src={!item.image ? 'https://www.spsco.com/media/catalog/product/cache/1/image/500x/8bffd1f41f6037eb62ae19998042eea4/placeholder/default/Image_Missing_placeholder.jpg' : item.image}
                                 height={450}
                                 width={450}
                             />
-                            ${item.price / 100}
-                            {item.name}
-                            {item.description}
-                            {item.qty}
+                            <h1>{item.name}</h1>
+                            <h2>{item.description}</h2>
+                            <h3>${item.price / 100}</h3>
+                            <h3>Stock: {item.qty}</h3>
                         </div>)
                 }
             </div>
