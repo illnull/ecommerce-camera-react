@@ -4,6 +4,7 @@ import axios from 'axios'
 
 import Collection from '../../components/collection/collection'
 import Category from '../../components/category/category'
+import Checkout from '../../pages/checkout/checkout'
 import './shop.scss'
 
 class ProductList extends React.Component {
@@ -13,7 +14,7 @@ class ProductList extends React.Component {
         this.state = {
             products: [],
             categories: [],
-            category_id: ''
+            category_id: '',
         }
     }
 
@@ -38,6 +39,12 @@ class ProductList extends React.Component {
                 axios.get('http://localhost:3000/products/all.json').then(res => {
                     this.setState({ products: res.data })
                 })
+            }
+            else if (this.state.category_id === 'sale') {
+                axios.get('http://localhost:3000/category/sale.json').then(res => {
+                    this.setState({ products: res.data })
+                })
+
             } else {
                 axios.get(`http://localhost:3000/categories/${this.state.category_id}.json`).then(res => {
                     this.setState({ products: res.data })
@@ -53,10 +60,11 @@ class ProductList extends React.Component {
     }
 
     render() {
+        console.log(this.props)
         return (
             <div style={{ display: 'flex', height: 'fit-content' }}>
                 <Category categories={this.state.categories} onSelectCategory={this.onSelectCategory} />
-                <Collection products={this.state.products} />
+                <Collection products={this.state.products} handleAddToCart={this.props.handleAddToCart} />
             </div>
         )
     }

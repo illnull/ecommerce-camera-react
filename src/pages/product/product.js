@@ -6,7 +6,7 @@ class Product extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            product: []
+            product: [],
         }
     }
 
@@ -34,6 +34,7 @@ class Product extends React.Component {
                             <h2>{item.description}</h2>
                             <h3>${item.price / 100}</h3>
                             <h3>Stock: {item.qty}</h3>
+                            <div onClick={(e) => this.props.handleAddToCart(e, item)}>hi</div>
                         </div>)
                 }
             </div>

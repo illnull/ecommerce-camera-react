@@ -24,10 +24,7 @@ export default class LoginSignUp extends Component {
             console.log(res)
             console.log(this.props)
             if (res.data.status === "created") {
-                console.log("hi")
                 this.props.handleSuccessfulAuth(res.data)
-            } else {
-                console.log("no")
             }
         }).catch(e => {
             console.log(e.response)

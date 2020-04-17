@@ -5,8 +5,8 @@ import './category.scss'
 const Category = ({ categories, onSelectCategory }) => {
     return (
         <div className="card" style={{ height: 'fit-content' }}>
-            <h1>Categories</h1>
             <div className="list-group list-group-flush">
+                <div className="list-group-item" onClick={() => onSelectCategory('sale')}>Sale</div>
                 <div className="list-group-item" onClick={() => onSelectCategory('newarrivals')}>New Arrivals</div>
                 <div className="list-group-item" onClick={() => onSelectCategory('all')}>All Products</div>
                 {

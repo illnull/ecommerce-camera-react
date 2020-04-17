@@ -14,6 +14,7 @@ class Signup extends Component {
             password_confirmation: '',
             provinces: [],
             selectedProvince: '',
+            address: '',
             errors: ''
         }
     }
@@ -42,14 +43,15 @@ class Signup extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault()
-        const { email, password, password_confirmation, fName, lName, phNum, city, country, selectedProvince } = this.state
-        axios.post('http://localhost:3000/customers/new.json', { email: email, password: password, password_confirmation: password_confirmation, firstName: fName, lastName: lName, phoneNumber: phNum, city: city, country: country, province_id: selectedProvince }, { withCredentials: false })
+        const { email, password, password_confirmation, fName, lName, phNum, city, country, selectedProvince, address } = this.state
+        axios.post('http://localhost:3000/customers/new.json', { email: email, password: password, password_confirmation: password_confirmation, firstName: fName, lastName: lName, phoneNumber: phNum, city: city, country: country, province_id: selectedProvince, address: address }, { withCredentials: false })
             .then(response => {
                 if (response.data.status === 'created') {
                     console.log(response)
                     this.props.handleLogin(response.data)
                     this.redirect()
                 } else {
+                    console.log(response)
                     this.setState({
                         errors: response.data.errors
                     })
@@ -76,7 +78,7 @@ class Signup extends Component {
     }
 
     render() {
-        const { email, password, password_confirmation, fName, lName, phNum, city, country, provinces } = this.state
+        const { email, password, password_confirmation, fName, lName, phNum, city, country, provinces, address } = this.state
         return (
             <div>
                 <h1>Sign Up</h1>
@@ -110,6 +112,7 @@ class Signup extends Component {
                         onChange={this.handleChange}
                     />
                     <select onChange={this.handleDropList}>
+                        <option value="" disabled selected>Province</option>
                         {
                             provinces.map(province =>
                                 <option value={province.id}>{province.name}</option>
@@ -124,21 +127,28 @@ class Signup extends Component {
                         onChange={this.handleChange}
                     />
                     <input
-                        placeholder="email"
+                        placeholder="Address"
+                        type="text"
+                        name="address"
+                        value={address}
+                        onChange={this.handleChange}
+                    />
+                    <input
+                        placeholder="Email"
                         type="text"
                         name="email"
                         value={email}
                         onChange={this.handleChange}
                     />
                     <input
-                        placeholder="password"
+                        placeholder="Password"
                         type="password"
                         name="password"
                         value={password}
                         onChange={this.handleChange}
                     />
                     <input
-                        placeholder="password confirmation"
+                        placeholder="Password Confirmation"
                         type="password"
                         name="password_confirmation"
                         value={password_confirmation}

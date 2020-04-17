@@ -1,5 +1,6 @@
+$prime-front: 'Oswald';
 .field-note-container{
-    font-family:  'Oswald';
+    font-family:  $prime-front;
     display: flex;
     flex-direction: column;
     align-items: center;

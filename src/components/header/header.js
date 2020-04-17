@@ -12,8 +12,6 @@ const Header = (props) => {
             })
             .catch(error => console.log(error))
     }
-
-    console.log(props)
     return (
         <div className='header'>
             <div className='upper-header'>
@@ -26,13 +24,21 @@ const Header = (props) => {
                 <div className='link-header'>
                     <Link className='upper-option' to='/'>
                         LOGO
-                </Link>
+                    </Link>
+                    <Link className='upper-option' to='/about'>
+                        ABOUT
+                    </Link>
+                    <Link className='upper-option' to='/contact'>
+                        CONTACT
+                    </Link>
                     {
-                        props.isLoggedIn ? <Link className='upper-option' to='/shop'>ACCOUNT</Link> :
+                        props.isLoggedIn ?
+                            <Link className='upper-option' to='/shop'>ACCOUNT</Link> :
                             <Link className='upper-option' to='/signup'>
                                 SIGN UP
                             </Link>
                     }
+
                     {
                         props.isLoggedIn ?
                             <Link to='/' onClick={handleClick}>LOG OUT</Link> :
@@ -40,7 +46,6 @@ const Header = (props) => {
                                 LOGIN
                             </Link>
                     }
-
                 </div>
             </div>
         </div>

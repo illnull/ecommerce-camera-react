@@ -8,6 +8,9 @@ import PlaceHolder from './pages/placeholder'
 import Login from './pages/login/login'
 import SignUp from './pages/signup/signup'
 import Product from './pages/product/product'
+import Contact from './pages/contact/contact'
+import About from './pages/about/about'
+import CheckOut from './pages/checkout/checkout'
 
 import Header from './components/header/header'
 
@@ -19,7 +22,8 @@ class App extends React.Component {
 
     this.state = {
       isLoggedIn: JSON.parse(localStorage.getItem('isLoggedIn')) || false,
-      customer: JSON.parse(localStorage.getItem('customer')) || []
+      customer: JSON.parse(localStorage.getItem('customer')) || [],
+      cart: JSON.parse(localStorage.getItem('cart')) || []
     }
   }
 
@@ -59,14 +63,39 @@ class App extends React.Component {
       .catch(error => console.log('api errors:', error))
   }
 
+  handleAddToCart = (e, product) => {
+    this.setState(state => {
+      const cart = state.cart
+      let productInCart = false
+
+      cart.map(item => {
+        if (item.id === product.id) {
+          productInCart = true
+          item.count++
+        }
+      })
+      if (!productInCart) {
+        cart.push({ ...product, count: 1 })
+      }
+      localStorage.setItem("cart", JSON.stringify(cart))
+      return cart
+    })
+  }
+
+  handeRemoveFromCart(e, item) {
+    this.seteState(state => {
+
+    })
+  }
 
   render() {
-    console.log(this.state)
+    console.log(this.state.cart)
     return (
       <div>
         <Header
           {...this.state}
-          handleLogout={this.handleLogout} />
+          handleLogout={this.handleLogout}
+        />
         <Switch>
           <Route exact path='/' render={props => (<HomePage {...props} handleLogout={this.handleLogout} loggedInStatus={this.state.isLoggedIn} />)} />
           <Route exact path='/shop' component={Shop} />
@@ -74,7 +103,10 @@ class App extends React.Component {
           <Route exact path='https://localhost:3000/admin/login' />
           <Route exact path='/login' render={props => (<Login {...props} handleLogin={this.handleLogin} loggedInStatus={this.state.isLoggedIn} />)} />
           <Route exact path='/signup' render={props => (<SignUp {...props} handleLogin={this.handleLogin} loggedInStatus={this.state.isLoggedIn} />)} />
-          <Route path='/shop/products/:id' component={Product} />
+          <Route exact path='/about' component={About} />
+          <Route exact path='/contact' component={Contact} />
+          <Route exact path='/shop/cart' render={() => (<CheckOut cart={this.state.cart} handleRemoveCart={this.handleRemoveCart} />)} />
+          <Route path='/shop/products/:id' render={props => (<Product {...props} handleAddToCart={this.handleAddToCart} />)} />
         </Switch>
       </div>
     )

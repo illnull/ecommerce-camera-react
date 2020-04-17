@@ -8,6 +8,7 @@ import FieldNotes from '../components/home/field-notes/field-notes'
 
 class HomePage extends React.Component {
     render() {
+        console.log(this.props)
         return (
             <div>
                 <Banner />
