@@ -82,9 +82,11 @@ class App extends React.Component {
     })
   }
 
-  handeRemoveFromCart(e, item) {
-    this.seteState(state => {
-
+  handleRemoveCart = (e, item) => {
+    this.setState(state => {
+      const cart = state.cart.filter(elm => elm.id !== item.id)
+      localStorage.setItem('cart', JSON.stringify(cart))
+      return { cart }
     })
   }
 

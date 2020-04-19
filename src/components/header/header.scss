@@ -15,4 +15,10 @@
         justify-content: space-around;
         //justify-content: center;
     }
+    
+    .link-header{
+        display: flex;
+        width: 17%;
+        place-content: space-between;
+    }
 }

@@ -22,6 +22,9 @@ const Header = (props) => {
                     SUPER SECRET ADMIN
             </a>
                 <div className='link-header'>
+                    <Link className='upper-option' to='/shop'>
+                        SHOP
+                    </Link>
                     <Link className='upper-option' to='/'>
                         LOGO
                     </Link>
@@ -46,6 +49,8 @@ const Header = (props) => {
                                 LOGIN
                             </Link>
                     }
+
+                    <Link className='upper-option' to='/shop/cart'>CART</Link>
                 </div>
             </div>
         </div>
