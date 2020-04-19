@@ -71,13 +71,36 @@ class App extends React.Component {
       cart.map(item => {
         if (item.id === product.id) {
           productInCart = true
-          item.count++
         }
       })
       if (!productInCart) {
         cart.push({ ...product, count: 1 })
       }
       localStorage.setItem("cart", JSON.stringify(cart))
+      return cart
+    })
+  }
+
+  handleAddQty = (e, product) => {
+    this.setState(state => {
+      const cart = state.cart
+
+      cart.map(item => {
+        item.count++
+      })
+      localStorage.setItem('cart', JSON.stringify(cart))
+      return cart
+    })
+  }
+
+  handleRemoveQty = (e, product) => {
+    this.setState(state => {
+      const cart = state.cart
+
+      cart.map(item => {
+        item.count--
+      })
+      localStorage.setItem('cart', JSON.stringify(cart))
       return cart
     })
   }
@@ -89,6 +112,7 @@ class App extends React.Component {
       return { cart }
     })
   }
+
 
   render() {
     console.log(this.state.cart)
@@ -107,7 +131,7 @@ class App extends React.Component {
           <Route exact path='/signup' render={props => (<SignUp {...props} handleLogin={this.handleLogin} loggedInStatus={this.state.isLoggedIn} />)} />
           <Route exact path='/about' component={About} />
           <Route exact path='/contact' component={Contact} />
-          <Route exact path='/shop/cart' render={() => (<CheckOut cart={this.state.cart} handleRemoveCart={this.handleRemoveCart} />)} />
+          <Route exact path='/shop/cart' render={() => (<CheckOut cart={this.state.cart} handleRemoveCart={this.handleRemoveCart} handleAddQty={this.handleAddQty} handleRemoveQty={this.handleRemoveQty} />)} />
           <Route path='/shop/products/:id' render={props => (<Product {...props} handleAddToCart={this.handleAddToCart} />)} />
         </Switch>
       </div>

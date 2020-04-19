@@ -26,7 +26,6 @@ export default class checkout extends Component {
                     </div>
                 </div>
                 {cart.length === 0 ? <div><strong>Your cart is empty</strong></div> :
-
                     cart.map(item =>
                         <div className='checkout-item'>
                             <div className='image-container'>
@@ -34,9 +33,9 @@ export default class checkout extends Component {
                             </div>
                             <span className='name'>{item.name}</span>
                             <span className='quantity'>
-                                <div className="arrow">&#10094;</div>
+                                <div className="arrow" onClick={e => this.props.handleRemoveQty(e, item)}>&#10094;</div>
                                 <span className="value">{item.count}</span>
-                                <div className="arrow">&#10095;</div>
+                                <div className="arrow" onClick={e => this.props.handleAddQty(e, item)}>&#10095;</div>
                             </span>
                             <span className='price'>${((item.count * item.price) / 100).toFixed(2)}</span>
                             <div className='remove-button' onClick={e => this.props.handleRemoveCart(e, item)}>&#10005;</div>
