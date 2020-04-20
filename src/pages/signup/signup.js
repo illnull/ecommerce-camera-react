@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios'
+import './signup.scss'
+
 class Signup extends Component {
     constructor(props) {
         super(props);
@@ -67,9 +69,9 @@ class Signup extends Component {
     handleErrors = () => {
         return (
             <div>
-                <ul>
+                <ul >
                     {this.state.errors.map(error => {
-                        return <li key={error}>{error}</li>
+                        return <li key={error} style={{ listStyleType: 'none' }}>{error}</li>
                     })
                     }
                 </ul>
@@ -80,92 +82,105 @@ class Signup extends Component {
     render() {
         const { email, password, password_confirmation, fName, lName, phNum, city, country, provinces, address } = this.state
         return (
-            <div>
+            <div style={{ textAlign: '-webkit-center', fontFamily: 'Oswald' }}>
                 <h1>Sign Up</h1>
-                <form onSubmit={this.handleSubmit}>
-                    <input
-                        placeholder="First Name"
-                        type="text"
-                        name="fName"
-                        value={fName}
-                        onChange={this.handleChange}
-                    />
-                    <input
-                        placeholder="Last Name"
-                        type="text"
-                        name="lName"
-                        value={lName}
-                        onChange={this.handleChange}
-                    />
-                    <input
-                        placeholder="Phone Number"
-                        type="tel"
-                        name="phNum"
-                        value={phNum}
-                        onChange={this.handleChange}
-                    />
-                    <input
-                        placeholder="Country"
-                        type="text"
-                        name="country"
-                        value={country}
-                        onChange={this.handleChange}
-                    />
-                    <select onChange={this.handleDropList}>
-                        <option value="" disabled selected>Province</option>
-                        {
-                            provinces.map(province =>
-                                <option value={province.id}>{province.name}</option>
-                            )
-                        }
-                    </select>
-                    <input
-                        placeholder="City"
-                        type="text"
-                        name="city"
-                        value={city}
-                        onChange={this.handleChange}
-                    />
-                    <input
-                        placeholder="Address"
-                        type="text"
-                        name="address"
-                        value={address}
-                        onChange={this.handleChange}
-                    />
-                    <input
-                        placeholder="Email"
-                        type="text"
-                        name="email"
-                        value={email}
-                        onChange={this.handleChange}
-                    />
-                    <input
-                        placeholder="Password"
-                        type="password"
-                        name="password"
-                        value={password}
-                        onChange={this.handleChange}
-                    />
-                    <input
-                        placeholder="Password Confirmation"
-                        type="password"
-                        name="password_confirmation"
-                        value={password_confirmation}
-                        onChange={this.handleChange}
-                    />
-
-                    <button placeholder="submit" type="submit">
-                        Sign Up
-          </button>
-
-                </form>
                 <div>
                     {
-                        this.state.errors ? this.handleErrors() : null
+                        this.state.errors ? <div>{this.handleErrors()}</div> : null
                     }
                 </div>
+                <form onSubmit={this.handleSubmit} className='inputContainer'>
+                    <div style={{ display: 'flex' }}>
+                        <div className='input-form'>
+                            <input
+                                placeholder="First Name"
+                                type="text"
+                                name="fName"
+                                value={fName}
+                                onChange={this.handleChange}
+                                style={{ margin: '3% 3%', padding: '0 10px' }}
+                            />
+                            <input
+                                placeholder="Last Name"
+                                type="text"
+                                name="lName"
+                                value={lName}
+                                onChange={this.handleChange}
+                                style={{ margin: '3% 3%', padding: '0 10px' }}
+                            />
+                            <input
+                                placeholder="Phone Number"
+                                type="tel"
+                                name="phNum"
+                                value={phNum}
+                                onChange={this.handleChange}
+                                style={{ margin: '3% 3%', padding: '0 10px' }}
+                            />
+                            <input
+                                placeholder="Country"
+                                type="text"
+                                name="country"
+                                value={country}
+                                onChange={this.handleChange}
+                                style={{ margin: '3% 3%', padding: '0 10px' }}
+                            />
+                            <select onChange={this.handleDropList}>
+                                <option value="" disabled selected>Province</option>
+                                {
+                                    provinces.map(province =>
+                                        <option value={province.id}>{province.name}</option>
+                                    )
+                                }
+                            </select>
+                            <input
+                                placeholder="City"
+                                type="text"
+                                name="city"
+                                value={city}
+                                onChange={this.handleChange}
+                                style={{ margin: '3% 3%', padding: '0 10px' }}
+                            />
+                            <input
+                                placeholder="Address"
+                                type="text"
+                                name="address"
+                                value={address}
+                                onChange={this.handleChange}
+                                style={{ margin: '3% 3%', padding: '0 10px' }}
+                            />
+                        </div>
+                        <div className='input-form'>
+                            <input
+                                placeholder="Email"
+                                type="text"
+                                name="email"
+                                value={email}
+                                onChange={this.handleChange}
+                                style={{ margin: '3% 3%', padding: '0 10px' }}
+                            />
+                            <input
+                                placeholder="Password"
+                                type="password"
+                                name="password"
+                                value={password}
+                                onChange={this.handleChange}
+                                style={{ margin: '3% 3%', padding: '0 10px' }}
+                            />
+                            <input
+                                placeholder="Password Confirmation"
+                                type="password"
+                                name="password_confirmation"
+                                value={password_confirmation}
+                                onChange={this.handleChange}
+                                style={{ margin: '3% 3%', padding: '0 10px' }}
+                            />
+                        </div>
+                    </div>
 
+                    <button placeholder="submit" type="submit" className="btn btn-primary">
+                        Sign Up
+                    </button>
+                </form>
             </div>
         );
     }

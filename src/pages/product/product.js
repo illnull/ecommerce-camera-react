@@ -24,7 +24,7 @@ class Product extends React.Component {
             <div>
                 {
                     this.state.product.map(item =>
-                        <div id={item.id}>
+                        <div id={item.id} style={{ fontFamily: 'Oswald' }}>
                             <Image
                                 src={!item.image ? 'https://www.spsco.com/media/catalog/product/cache/1/image/500x/8bffd1f41f6037eb62ae19998042eea4/placeholder/default/Image_Missing_placeholder.jpg' : item.image}
                                 height={450}

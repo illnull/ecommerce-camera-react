@@ -46,7 +46,7 @@ class Login extends Component {
             <div>
                 <ul>
                     {this.state.errors.map(error => {
-                        return <li key={error}>{error}</li>
+                        return <li key={error} style={{ listStyleType: 'none' }}>{error}</li>
                     })}
                 </ul>
             </div>
@@ -57,8 +57,13 @@ class Login extends Component {
         console.log(this.props)
         const { email, password } = this.state
         return (
-            <div>
+            <div className='container' style={{ fontFamily: 'Oswald' }}>
                 <h1>Log In</h1>
+                <div>
+                    {
+                        this.state.errors ? this.handleErrors() : null
+                    }
+                </div>
                 <form onSubmit={this.handleSubmit}>
                     <input
                         placeholder="email"
@@ -82,11 +87,6 @@ class Login extends Component {
                     </div>
 
                 </form>
-                <div>
-                    {
-                        this.state.errors ? this.handleErrors() : null
-                    }
-                </div>
             </div>
         );
     }

@@ -20,7 +20,7 @@ export default class contact extends Component {
 
     render() {
         return (
-            <div>
+            <div className='container' style={{ fontFamily: 'Oswald' }}>
                 <h1>CONTACT US</h1>
                 {
                     this.state.content.map(data =>

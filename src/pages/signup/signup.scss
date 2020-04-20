@@ -1,0 +1,13 @@
+.inputContainer{
+    display:flex;
+    flex-direction: column;
+    width: 30%;
+    line-height: 3;
+
+    .input-form{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        padding: 0 10px
+    }
+}

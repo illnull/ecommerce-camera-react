@@ -19,7 +19,7 @@ export default class about extends Component {
     }
     render() {
         return (
-            <div>
+            <div className='container' style={{ fontFamily: 'Oswald' }}>
                 <h1>ABOUT US</h1>
                 {
                     this.state.content.map(data =>
