@@ -4,7 +4,6 @@ import axios from 'axios'
 
 import Collection from '../../components/collection/collection'
 import Category from '../../components/category/category'
-import Checkout from '../../pages/checkout/checkout'
 import './shop.scss'
 
 class ProductList extends React.Component {

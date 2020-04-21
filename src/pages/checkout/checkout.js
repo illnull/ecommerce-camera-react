@@ -13,7 +13,7 @@ export default class checkout extends Component {
                         <span>Product</span>
                     </div>
                     <div className='header-block'>
-                        <span>Description</span>
+                        <span>Product</span>
                     </div>
                     <div className='header-block'>
                         <span>Quantity</span>
@@ -38,7 +38,7 @@ export default class checkout extends Component {
                                 <div className="arrow" onClick={e => this.props.handleAddQty(e, item)}>&#10095;</div>
                             </span>
                             <span className='price'>${((item.count * item.price) / 100).toFixed(2)}</span>
-                            <div className='remove-button' onClick={e => this.props.handleRemoveCart(e, item)}>&#10005;</div>
+                            <div style={{ width: '100%' }} onClick={e => this.props.handleRemoveCart(e, item)}>&#10005;</div>
                         </div>
                     )
                 }

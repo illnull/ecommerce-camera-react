@@ -104,6 +104,7 @@ class App extends React.Component {
         if (item.id === product.id)
           item.count--
       })
+
       localStorage.setItem('cart', JSON.stringify(cart))
       return cart
     })
