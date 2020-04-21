@@ -50,7 +50,7 @@ const Header = (props) => {
                             </Link>
                     }
 
-                    <Link className='upper-option' to='/shop/cart'>CART</Link>
+                    <Link className='upper-option' to='/shop/cart'>CART({props.cart.length})</Link>
                 </div>
             </div>
         </div>

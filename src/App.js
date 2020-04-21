@@ -71,6 +71,7 @@ class App extends React.Component {
       cart.map(item => {
         if (item.id === product.id) {
           productInCart = true
+          item.count++
         }
       })
       if (!productInCart) {
@@ -86,7 +87,9 @@ class App extends React.Component {
       const cart = state.cart
 
       cart.map(item => {
-        item.count++
+        if (item.id === product.id) {
+          item.count++
+        }
       })
       localStorage.setItem('cart', JSON.stringify(cart))
       return cart
@@ -98,7 +101,8 @@ class App extends React.Component {
       const cart = state.cart
 
       cart.map(item => {
-        item.count--
+        if (item.id === product.id)
+          item.count--
       })
       localStorage.setItem('cart', JSON.stringify(cart))
       return cart
