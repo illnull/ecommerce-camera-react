@@ -57,7 +57,7 @@ class Login extends Component {
         console.log(this.props)
         const { email, password } = this.state
         return (
-            <div className='container' style={{ fontFamily: 'Oswald' }}>
+            <div className='container' style={{ fontFamily: 'Oswald', textAlign: '-webkit-center' }}>
                 <h1>Log In</h1>
                 <div>
                     {
@@ -65,21 +65,27 @@ class Login extends Component {
                     }
                 </div>
                 <form onSubmit={this.handleSubmit}>
-                    <input
-                        placeholder="email"
-                        type="text"
-                        name="email"
-                        value={email}
-                        onChange={this.handleChange}
-                    />
-                    <input
-                        placeholder="password"
-                        type="password"
-                        name="password"
-                        value={password}
-                        onChange={this.handleChange}
-                    />
-                    <button placeholder="submit" type="submit">
+                    <div style={{ display: 'flex', flexDirection: 'column', width: '270px', lineHeight: '3' }}>
+                        <input
+                            placeholder="email"
+                            type="text"
+                            name="email"
+                            value={email}
+                            onChange={this.handleChange}
+                            style={{ margin: '3%', padding: '0 10px' }}
+                        />
+                        <input
+                            placeholder="password"
+                            type="password"
+                            name="password"
+                            value={password}
+                            onChange={this.handleChange}
+                            style={{
+                                margin: '3%', padding: '0 10px'
+                            }}
+                        />
+                    </div>
+                    <button placeholder="submit" type="submit" className="btn btn-primary">
                         Log In
           </button>
                     <div>
