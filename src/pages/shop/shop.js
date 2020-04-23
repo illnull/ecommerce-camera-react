@@ -1,6 +1,6 @@
 import React from 'react'
 import axios from 'axios'
-
+import _ from 'lodash'
 
 import Collection from '../../components/collection/collection'
 import Category from '../../components/category/category'
@@ -14,6 +14,8 @@ class ProductList extends React.Component {
             products: [],
             categories: [],
             category_id: '',
+            categoryId: '',
+            keyword: '',
         }
     }
 
@@ -59,10 +61,23 @@ class ProductList extends React.Component {
     }
 
     render() {
-        console.log(this.props)
+        console.log(this.state)
         return (
             <div className="container">
-                <input type='search' placeholder='Product name' />
+                <div>
+                    <select>
+                        <option>All</option>
+                        {
+                            this.state.categories.map(category =>
+                                <option value={category.id}>
+                                    {_.upperFirst(category.categoryDescription)}
+                                </option>
+
+                            )
+                        }
+                    </select>
+                    <input type='search' placeholder='Product name' />
+                </div>
                 <div style={{ display: 'flex', height: 'fit-content', fontFamily: 'Oswald', marginTop: "100px" }}>
                     <Category categories={this.state.categories} onSelectCategory={this.onSelectCategory} />
                     <Collection products={this.state.products} handleAddToCart={this.props.handleAddToCart} />
