@@ -89,28 +89,26 @@ class ProductList extends React.Component {
     render() {
         console.log(this.state)
         return (
-            <div className="container">
-                <div>
-                    <form>
-                        <select name='categoryId' onChange={this.handleDropList}>
-                            <option value="">All</option>
-                            {
-                                this.state.categories.map(category =>
-                                    <option value={category.id}>
-                                        {_.upperFirst(category.categoryDescription)}
-                                    </option>
+            <div className="container" style={{ marginTop: "100px" }}>
+                <form>
+                    <select name='categoryId' onChange={this.handleDropList} style={{ height: '31px', marginBottom: "10px", fontFamily: 'Oswald', marginRight: '10px' }}>
+                        <option value="">All</option>
+                        {
+                            this.state.categories.map(category =>
+                                <option value={category.id}>
+                                    {_.upperFirst(category.categoryDescription)}
+                                </option>
 
-                                )
-                            }
-                        </select>
-                        <input type='text' name="keyword" placeholder='Product name' onChange={this.handleChange} value={this.state.keyword} />
-                    </form>
-                </div>
-                <div style={{ display: 'flex', height: 'fit-content', fontFamily: 'Oswald', marginTop: "100px" }}>
+                            )
+                        }
+                    </select>
+                    <input type='text' name="keyword" placeholder='Product name' onChange={this.handleChange} value={this.state.keyword} style={{ fontFamily: 'Oswald' }} />
+                </form>
+                <div style={{ display: 'flex', height: 'fit-content', fontFamily: 'Oswald' }}>
                     <Category categories={this.state.categories} onSelectCategory={this.onSelectCategory} />
                     <Collection products={this.state.products} handleAddToCart={this.props.handleAddToCart} />
                 </div>
-            </div>
+            </div >
         )
     }
 }
