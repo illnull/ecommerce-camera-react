@@ -60,23 +60,39 @@ class ProductList extends React.Component {
         })
     }
 
+    handleChange = (event) => {
+        const { name, value } = event.target
+        this.setState({
+            [name]: value
+        })
+    }
+
+    handleDropList = (e) => {
+        this.setState({
+            categoryId: e.target.value
+        })
+    }
+
     render() {
         console.log(this.state)
         return (
             <div className="container">
                 <div>
-                    <select>
-                        <option>All</option>
-                        {
-                            this.state.categories.map(category =>
-                                <option value={category.id}>
-                                    {_.upperFirst(category.categoryDescription)}
-                                </option>
+                    <form>
+                        <select name='categoryId' onChange={this.handleDropList}>
+                            <option value="0">All</option>
+                            {
+                                this.state.categories.map(category =>
+                                    <option value={category.id}>
+                                        {_.upperFirst(category.categoryDescription)}
+                                    </option>
 
-                            )
-                        }
-                    </select>
-                    <input type='search' placeholder='Product name' />
+                                )
+                            }
+                        </select>
+                        <input type='text' name="keyword" placeholder='Product name' onChange={this.handleChange} value={this.state.keyword} />
+                        <button type="submit">Search</button>
+                    </form>
                 </div>
                 <div style={{ display: 'flex', height: 'fit-content', fontFamily: 'Oswald', marginTop: "100px" }}>
                     <Category categories={this.state.categories} onSelectCategory={this.onSelectCategory} />
