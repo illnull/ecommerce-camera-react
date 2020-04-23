@@ -30,6 +30,19 @@ class ProductList extends React.Component {
     }
 
     componentDidUpdate(prevProps, prevState) {
+        if (this.state.keyword !== prevState.keyword) {
+            if (this.state.keyword !== '') {
+                axios.get(`http://localhost:3000/search.json?categoryId=${this.state.categoryId}&keyword=${this.state.keyword}`).then(res => {
+                    this.setState({ products: res.data })
+                    console.log(res.data)
+                })
+            }
+            else {
+                axios.get(`http://localhost:3000/products/all.json`).then(res => {
+                    this.setState({ products: res.data })
+                })
+            }
+        }
         if (this.state.category_id !== prevState.category_id) {
             if (this.state.category_id === 'newarrivals') {
                 axios.get('http://localhost:3000/products/new.json').then(res => {
@@ -78,7 +91,7 @@ class ProductList extends React.Component {
         return (
             <div className="container">
                 <div>
-                    <form>
+                    <form onSubmit={this.handleOnSubmit}>
                         <select name='categoryId' onChange={this.handleDropList}>
                             <option value="0">All</option>
                             {

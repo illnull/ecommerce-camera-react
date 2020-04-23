@@ -11,6 +11,7 @@ import Product from './pages/product/product'
 import Contact from './pages/contact/contact'
 import About from './pages/about/about'
 import CheckOut from './pages/checkout/checkout'
+import Search from './pages/search/search'
 
 import Header from './components/header/header'
 
@@ -138,7 +139,8 @@ class App extends React.Component {
           <Route exact path='/about' component={About} />
           <Route exact path='/contact' component={Contact} />
           <Route exact path='/shop/cart' render={() => (<CheckOut cart={this.state.cart} handleRemoveCart={this.handleRemoveCart} handleAddQty={this.handleAddQty} handleRemoveQty={this.handleRemoveQty} />)} />
-          <Route path='/shop/products/:id' render={props => (<Product {...props} handleAddToCart={this.handleAddToCart} />)} />
+          <Route exact path='/shop/products/:id' render={props => (<Product {...props} handleAddToCart={this.handleAddToCart} />)} />
+          <Route exact path='/shop?categoryId=:categoryId&keyword=:keyword' render={props => <Search {...props} />} />
         </Switch>
       </div>
     )
