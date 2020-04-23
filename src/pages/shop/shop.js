@@ -30,7 +30,7 @@ class ProductList extends React.Component {
     }
 
     componentDidUpdate(prevProps, prevState) {
-        if (this.state.keyword !== prevState.keyword) {
+        if (this.state.keyword !== prevState.keyword || this.state.categoryId !== prevState.categoryId) {
             if (this.state.keyword !== '') {
                 axios.get(`http://localhost:3000/search.json?categoryId=${this.state.categoryId}&keyword=${this.state.keyword}`).then(res => {
                     this.setState({ products: res.data })
@@ -91,9 +91,9 @@ class ProductList extends React.Component {
         return (
             <div className="container">
                 <div>
-                    <form onSubmit={this.handleOnSubmit}>
+                    <form>
                         <select name='categoryId' onChange={this.handleDropList}>
-                            <option value="0">All</option>
+                            <option value="">All</option>
                             {
                                 this.state.categories.map(category =>
                                     <option value={category.id}>
@@ -104,7 +104,6 @@ class ProductList extends React.Component {
                             }
                         </select>
                         <input type='text' name="keyword" placeholder='Product name' onChange={this.handleChange} value={this.state.keyword} />
-                        <button type="submit">Search</button>
                     </form>
                 </div>
                 <div style={{ display: 'flex', height: 'fit-content', fontFamily: 'Oswald', marginTop: "100px" }}>
