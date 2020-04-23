@@ -38,7 +38,7 @@ export default class checkout extends Component {
                                 <div className="arrow" onClick={e => this.props.handleAddQty(e, item)}>&#10095;</div>
                             </span>
                             <span className='price'>${((item.count * item.price) / 100).toFixed(2)}</span>
-                            <div style={{ width: '100%' }} onClick={e => this.props.handleRemoveCart(e, item)}>&#10005;</div>
+                            <div className='remove-button' onClick={e => this.props.handleRemoveCart(e, item)}>&#10005;</div>
                         </div>
                     )
                 }

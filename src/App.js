@@ -130,6 +130,7 @@ class App extends React.Component {
         <Switch>
           <Route exact path='/' render={props => (<HomePage {...props} handleLogout={this.handleLogout} loggedInStatus={this.state.isLoggedIn} />)} />
           <Route exact path='/shop' component={Shop} />
+          <Route exact path='/shop/category/:id' component={Shop} />
           <Route exact path='/placeholder' component={PlaceHolder} />
           <Route exact path='https://localhost:3000/admin/login' />
           <Route exact path='/login' render={props => (<Login {...props} handleLogin={this.handleLogin} loggedInStatus={this.state.isLoggedIn} />)} />

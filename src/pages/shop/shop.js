@@ -61,9 +61,12 @@ class ProductList extends React.Component {
     render() {
         console.log(this.props)
         return (
-            <div style={{ display: 'flex', height: 'fit-content', fontFamily: 'Oswald' }}>
-                <Category categories={this.state.categories} onSelectCategory={this.onSelectCategory} />
-                <Collection products={this.state.products} handleAddToCart={this.props.handleAddToCart} />
+            <div className="container">
+                <input type='search' placeholder='Product name' />
+                <div style={{ display: 'flex', height: 'fit-content', fontFamily: 'Oswald', marginTop: "100px" }}>
+                    <Category categories={this.state.categories} onSelectCategory={this.onSelectCategory} />
+                    <Collection products={this.state.products} handleAddToCart={this.props.handleAddToCart} />
+                </div>
             </div>
         )
     }

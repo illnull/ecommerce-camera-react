@@ -4,7 +4,7 @@ import Image from 'react-image-resizer'
 
 import './collection.scss'
 
-const Collection = ({ products, cart }) => {
+const Collection = ({ products }) => {
     return (
         <div className="row" style={{ width: '90%' }} >
             {
